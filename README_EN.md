@@ -8,7 +8,8 @@ An MCP (Model Context Protocol) server for **Yikaobang (医考帮)**, a Chinese 
 > - The tool reads **your own account data** for personal study only and does not redistribute question-bank content. Respect Yikaobang's terms of service and applicable laws; built-in rate limiting avoids pressuring official servers. Use at your own risk.
 > - The [MIT license](LICENSE) covers this project's code only; it does not extend to official trademarks, the app, or question-bank content.
 
-> **Important**: Logging in through this MCP will **sign you out of the Yikaobang app on your phone and other devices** (due to the official account session mechanism). Be aware before logging in; to keep using the app, simply log in there again (which may in turn invalidate this MCP's session, requiring a re-login here).
+> [!IMPORTANT]
+> Logging in through this MCP will **sign you out of the Yikaobang app on your phone and other devices** (due to the official account session mechanism). Be aware before logging in; to keep using the app, simply log in there again (which may in turn invalidate this MCP's session, requiring a re-login here).
 
 ## Tools
 
