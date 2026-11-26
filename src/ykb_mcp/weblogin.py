@@ -32,6 +32,7 @@ _PAGE = """<!doctype html>
 <div class="card">
  <h1>医考帮登录</h1>
  <p class="sub">仅本机可访问 · 密码不经过 AI 对话 · 不保存密码</p>
+ <p class="sub" style="color:#d4380d">注意：在此登录会使手机等设备上的医考帮 App 退出登录</p>
  <form id="f">
   <input id="mobile" type="text" inputmode="numeric" autocomplete="off" placeholder="手机号" required>
   <input id="password" type="password" autocomplete="new-password" placeholder="密码" required>

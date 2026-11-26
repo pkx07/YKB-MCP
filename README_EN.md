@@ -8,6 +8,8 @@ An MCP (Model Context Protocol) server for **Yikaobang (医考帮)**, a Chinese 
 > - The tool reads **your own account data** for personal study only and does not redistribute question-bank content. Respect Yikaobang's terms of service and applicable laws; built-in rate limiting avoids pressuring official servers. Use at your own risk.
 > - The [MIT license](LICENSE) covers this project's code only; it does not extend to official trademarks, the app, or question-bank content.
 
+> **Important**: Logging in through this MCP will **sign you out of the Yikaobang app on your phone and other devices** (due to the official account session mechanism). Be aware before logging in; to keep using the app, simply log in there again (which may in turn invalidate this MCP's session, requiring a re-login here).
+
 ## Tools
 
 | Group | Tool | Description |
@@ -115,6 +117,7 @@ You can also `uv pip install -e .` and use the `ykb-mcp` command directly (stdio
 ## Usage
 
 1. Ask your agent to log in: `ykb_login()` starts a **one-time login page bound to 127.0.0.1** and opens your browser. You type your mobile number and password in the browser; the local process submits them directly to the official API — **they never pass through the AI conversation**. On success, credentials (token/secret/user_id only) are saved to `~/.ykb-mcp/credentials.json` with mode 600; the password is never stored. The page expires after 5 minutes or 5 failed attempts.
+   - **Note: logging in will sign you out of the Yikaobang app on your phone and other devices.** Confirm before proceeding.
    - Manual login without an agent: `uv run ykb-mcp-login`
 2. `ykb_identities` → `ykb_answer_records(identity_id, filter="wrong")` for wrong questions.
 3. `ykb_chapters` → `ykb_chapter_questions` for question content; `ykb_question` for explanations.

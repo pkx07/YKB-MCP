@@ -10,6 +10,7 @@ _INSTRUCTIONS = """医考帮（yikaobang）个人账号数据 MCP。
 使用流程：
 1. 调用 ykb_login() 打开本地网页登录（127.0.0.1 一次性页面，自动开浏览器）。
    手机号/密码由用户在浏览器输入，绝不经过对话——严禁向用户索要密码。
+   重要：登录会导致用户手机等设备上的医考帮 App 退出登录，调用前必须先告知用户并获得确认。
    返回 pending 时用 ykb_login_status 查询结果。凭据仅存本地 ~/.ykb-mcp/。
 2. ykb_identities 查看可用题库身份；ykb_answer_records(identity_id, filter=wrong|cut|...) 拉取错题/已斩/做题记录。
 3. ykb_chapters + ykb_chapter_questions 获取题目内容；ykb_question 查单题。

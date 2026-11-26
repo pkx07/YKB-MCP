@@ -7,7 +7,7 @@ def register(mcp, client, store, login_manager):
     @mcp.tool
     @guard
     async def ykb_login(wait_seconds: int = 120) -> dict:
-        """打开本地网页登录医考帮：在 127.0.0.1 启动一次性登录页并自动打开浏览器（结果中也附 URL）。手机号与密码由用户在浏览器中输入，由本地进程直接提交官方接口，全程不经过对话。严禁向用户索要手机号/密码。默认等待登录完成（120 秒）；返回 pending 时让用户继续操作，之后用 ykb_login_status 查询。凭据仅存本地 ~/.ykb-mcp/credentials.json（600 权限），不存储密码。"""
+        """打开本地网页登录医考帮：在 127.0.0.1 启动一次性登录页并自动打开浏览器（结果中也附 URL）。手机号与密码由用户在浏览器中输入，由本地进程直接提交官方接口，全程不经过对话。严禁向用户索要手机号/密码。重要：登录会导致用户手机等设备上的医考帮 App 退出登录，调用前必须先告知用户并获得确认。默认等待登录完成（120 秒）；返回 pending 时让用户继续操作，之后用 ykb_login_status 查询。凭据仅存本地 ~/.ykb-mcp/credentials.json（600 权限），不存储密码。"""
         info = await login_manager.start()
         result = await login_manager.wait(timeout=wait_seconds)
         result.setdefault("url", info["url"])

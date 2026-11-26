@@ -23,6 +23,7 @@ async def run():
     client = YkbClient(store)
     try:
         if not store.credentials:
+            print("注意：登录会使你手机等设备上的医考帮 App 退出登录。")
             mobile = input("医考帮手机号: ").strip()
             password = getpass.getpass("密码（仅本次登录使用，不存储）: ")
             data = await client.login(mobile, password)
