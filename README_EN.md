@@ -1,6 +1,6 @@
 # YKB-MCP
 
-An MCP (Model Context Protocol) server for **Yikaobang (医考帮)**, a Chinese medical-exam prep app. It lets AI agents (Claude, opencode, any MCP client) read **your own account data**: comments, comment likes, wrong questions, collections, notes, and "cut" (mastered) questions — plus a few write actions (like a comment, publish a comment, cut a question).
+An MCP (Model Context Protocol) server for **Yikaobang (医考帮)**, a Chinese medical-exam prep app. It lets AI agents (WorkBuddy, QwenWork, Doubao Work, Codex — any MCP client) read **your own account data**: comments, comment likes, wrong questions, collections, notes, and "cut" (mastered) questions — plus a few write actions (like a comment, publish a comment, cut a question).
 
 > **Copyright & disclaimer**:
 > - The "医考帮" / "Yikaobang" trademarks, the official app, and all question-bank content are the property of **Beijing Yikaobang Education (北京医考帮教育)** and related rights holders.
@@ -44,21 +44,11 @@ uv sync
 
 ## MCP client configuration
 
-### opencode
+Replace `/path/to/YKB-MCP` with the absolute path of this repository. Any MCP client with stdio support works.
 
-```json
-{
-  "mcp": {
-    "ykb": {
-      "type": "local",
-      "command": ["uv", "run", "--directory", "/path/to/YKB-MCP", "ykb-mcp"],
-      "enabled": true
-    }
-  }
-}
-```
+### WorkBuddy (Tencent)
 
-### Claude Desktop / Claude Code
+Edit the user-level config `~/.workbuddy/mcp.json` (shared across projects; for a single project use `<project>/.workbuddy/mcp.json`):
 
 ```json
 {
@@ -70,6 +60,57 @@ uv sync
   }
 }
 ```
+
+Or via the UI: sidebar **Plugins** → **MCP Servers** (top right) → **Configure MCP**, paste the JSON and save. A green status light means connected. Official guide: [MCP configuration](https://www.workbuddy.cn/docs/workbuddy/From-Beginner-to-Expert-Guide/Function-Description/MCP-Guide).
+
+### QwenWork (Alibaba)
+
+Desktop client → left nav **Extensions** → **Connectors** → **+ Add** (top right):
+
+- **Manual config**: server type **STDIO**, name `ykb`, command (full launch command):
+
+  ```
+  uv run --directory /path/to/YKB-MCP ykb-mcp
+  ```
+
+- Or **Paste JSON config**:
+
+  ```json
+  {
+    "mcpServers": {
+      "ykb": {
+        "command": "uv",
+        "args": ["run", "--directory", "/path/to/YKB-MCP", "ykb-mcp"]
+      }
+    }
+  }
+  ```
+
+Note: after adding/enabling a connector you must **start a new conversation** for it to take effect. Official docs: [Connectors · Custom MCP services](https://docs.qwenwork.cn/features/connectors).
+
+### Doubao Work (ByteDance)
+
+Client → left nav **Plugins · Skills · Partners** → **Plugins** tab → **+ Add** (top right) → **New custom connector**:
+
+- Server name: `ykb`
+- Transport type: **STDIO**
+- Command: `uv`
+- Arguments: `run --directory /path/to/YKB-MCP ykb-mcp`
+- Environment variables: none needed
+
+Then describe your task in a conversation, or pick the plugin via `/` or `@`. Official docs: [Using plugins](https://www.doubao.com/work/docs/zh-cn/articles/705018132598-plugins).
+
+### Codex (OpenAI)
+
+Edit `~/.codex/config.toml`:
+
+```toml
+[mcp_servers.ykb]
+command = "uv"
+args = ["run", "--directory", "/path/to/YKB-MCP", "ykb-mcp"]
+```
+
+You can also `uv pip install -e .` and use the `ykb-mcp` command directly (stdio transport).
 
 ## Usage
 

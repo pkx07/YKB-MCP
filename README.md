@@ -1,6 +1,6 @@
 # YKB-MCP
 
-医考帮（yikaobang）个人账号数据 MCP 服务器。让 AI Agent（Claude、opencode 等任何支持 MCP 的客户端）读取你在医考帮的**评论、评论点赞、错题、收藏、笔记、已斩题目**，并支持少量写操作（点赞评论、发表评论、斩题）。
+医考帮（yikaobang）个人账号数据 MCP 服务器。让 AI Agent（WorkBuddy、千问办公、豆包工作、Codex 等任何支持 MCP 的客户端）读取你在医考帮的**评论、评论点赞、错题、收藏、笔记、已斩题目**，并支持少量写操作（点赞评论、发表评论、斩题）。
 
 > **版权与免责声明**：
 > - 「医考帮」「Yikaobang」商标、官方 App 及题库内容的版权均归**北京医考帮教育**及相关权利人所有。
@@ -44,23 +44,11 @@ uv sync
 
 ## 配置 MCP 客户端
 
-### opencode
+以下示例中的 `/path/to/YKB-MCP` 替换为本仓库的实际绝对路径。任何支持 stdio MCP 的客户端均可接入。
 
-`opencode.json`：
+### WorkBuddy（腾讯）
 
-```json
-{
-  "mcp": {
-    "ykb": {
-      "type": "local",
-      "command": ["uv", "run", "--directory", "/path/to/YKB-MCP", "ykb-mcp"],
-      "enabled": true
-    }
-  }
-}
-```
-
-### Claude Desktop / Claude Code
+编辑用户级配置 `~/.workbuddy/mcp.json`（所有项目复用；仅当前项目生效则用 `<项目目录>/.workbuddy/mcp.json`）：
 
 ```json
 {
@@ -71,6 +59,55 @@ uv sync
     }
   }
 }
+```
+
+也可在界面操作：侧边栏 **插件** → 右上角 **MCP 服务器** → **配置 MCP**，粘贴上述 JSON 保存。状态灯绿色即连接成功。官方文档：[MCP 配置指南](https://www.workbuddy.cn/docs/workbuddy/From-Beginner-to-Expert-Guide/Function-Description/MCP-Guide)。
+
+### 千问办公 QwenWork（阿里）
+
+桌面客户端 → 左侧导航 **扩展** → **连接器** → 右上角 **+ 添加**：
+
+- **手动填写配置**：服务器类型选 **STDIO**，服务器名称填 `ykb`，命令填完整启动命令：
+
+  ```
+  uv run --directory /path/to/YKB-MCP ykb-mcp
+  ```
+
+- 或 **粘贴 JSON 配置**：
+
+  ```json
+  {
+    "mcpServers": {
+      "ykb": {
+        "command": "uv",
+        "args": ["run", "--directory", "/path/to/YKB-MCP", "ykb-mcp"]
+      }
+    }
+  }
+  ```
+
+注意：添加/启用后需**新建一个对话任务**才会生效。官方文档：[连接器 · 自定义 MCP 服务](https://docs.qwenwork.cn/features/connectors)。
+
+### 豆包工作（字节跳动）
+
+客户端 → 左侧 **插件·技能·伙伴** → **插件** 页右上角 **+ 添加** → **新建自定义连接器**：
+
+- 服务器名称：`ykb`
+- 传输类型：**STDIO**
+- 运行命令：`uv`
+- 参数：`run --directory /path/to/YKB-MCP ykb-mcp`
+- 环境变量：无需填写
+
+保存后在任务中直接描述需求，或用 `/`、`@` 指定插件。官方文档：[使用插件](https://www.doubao.com/work/docs/zh-cn/articles/705018132598-plugins)。
+
+### Codex（OpenAI）
+
+编辑 `~/.codex/config.toml`：
+
+```toml
+[mcp_servers.ykb]
+command = "uv"
+args = ["run", "--directory", "/path/to/YKB-MCP", "ykb-mcp"]
 ```
 
 也可以 `uv pip install -e .` 后直接使用 `ykb-mcp` 命令（stdio 传输）。
