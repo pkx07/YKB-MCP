@@ -1,0 +1,36 @@
+[project]
+name = "ykb-mcp"
+version = "0.1.0"
+description = "医考帮 MCP 服务器：读取账号的评论、点赞、错题、收藏、笔记、已斩题目，支持少量写操作"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "pkx07" }]
+keywords = ["mcp", "yikaobang", "医考帮", "medical-exam"]
+dependencies = [
+    "fastmcp>=2.3",
+    "httpx>=0.27",
+    "pycryptodome>=3.20",
+]
+
+[project.scripts]
+ykb-mcp = "ykb_mcp.server:main"
+ykb-mcp-login = "ykb_mcp.weblogin:main"
+
+[dependency-groups]
+dev = [
+    "pytest>=8",
+    "pytest-asyncio>=0.24",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/ykb_mcp"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
+testpaths = ["tests"]
