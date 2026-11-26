@@ -86,7 +86,7 @@ uv sync
   }
   ```
 
-注意：添加/启用后需**新建一个对话任务**才会生效。官方文档：[连接器 · 自定义 MCP 服务](https://docs.qwenwork.cn/features/connectors)。
+注意：添加/启用后需**新建一个对话任务**才会生效。官方文档：[连接器 · 自定义 MCP 服务](https://docs.qwenwork.cn/features/connectors#%E8%87%AA%E5%AE%9A%E4%B9%89-mcp-%E6%9C%8D%E5%8A%A1)。
 
 ### 豆包工作（字节跳动）
 
@@ -98,7 +98,7 @@ uv sync
 - 参数：`run --directory /path/to/YKB-MCP ykb-mcp`
 - 环境变量：无需填写
 
-保存后在任务中直接描述需求，或用 `/`、`@` 指定插件。官方文档：[使用插件](https://www.doubao.com/work/docs/zh-cn/articles/705018132598-plugins)。
+保存后在任务中直接描述需求，或用 `/`、`@` 指定插件。官方文档：[使用插件](https://www.doubao.com/work/docs/zh-cn/articles/705018132598-plugins#tabs0|lineguid-oebEe)。
 
 ### Codex（OpenAI）
 

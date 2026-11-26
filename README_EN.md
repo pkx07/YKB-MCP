@@ -86,7 +86,7 @@ Desktop client → left nav **Extensions** → **Connectors** → **+ Add** (top
   }
   ```
 
-Note: after adding/enabling a connector you must **start a new conversation** for it to take effect. Official docs: [Connectors · Custom MCP services](https://docs.qwenwork.cn/features/connectors).
+Note: after adding/enabling a connector you must **start a new conversation** for it to take effect. Official docs: [Connectors · Custom MCP services](https://docs.qwenwork.cn/features/connectors#%E8%87%AA%E5%AE%9A%E4%B9%89-mcp-%E6%9C%8D%E5%8A%A1).
 
 ### Doubao Work (ByteDance)
 
@@ -98,7 +98,7 @@ Client → left nav **Plugins · Skills · Partners** → **Plugins** tab → **
 - Arguments: `run --directory /path/to/YKB-MCP ykb-mcp`
 - Environment variables: none needed
 
-Then describe your task in a conversation, or pick the plugin via `/` or `@`. Official docs: [Using plugins](https://www.doubao.com/work/docs/zh-cn/articles/705018132598-plugins).
+Then describe your task in a conversation, or pick the plugin via `/` or `@`. Official docs: [Using plugins](https://www.doubao.com/work/docs/zh-cn/articles/705018132598-plugins#tabs0|lineguid-oebEe).
 
 ### Codex (OpenAI)
 
